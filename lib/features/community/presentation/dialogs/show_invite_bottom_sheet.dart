@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:rise/core/config/constants.dart';
 
 void showInviteBottomSheet(BuildContext context, String inviterName, String habitName) {
   showModalBottomSheet(
@@ -14,7 +16,7 @@ void showInviteBottomSheet(BuildContext context, String inviterName, String habi
             CircleAvatar(
               radius: 40,
               backgroundColor: Colors.blueAccent,
-              child: Icon(Icons.person, size: 40, color: Colors.white),
+              child: CachedNetworkImage(imageUrl: avatar(inviterName)),
             ),
             SizedBox(height: 12),
 
