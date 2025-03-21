@@ -7,10 +7,12 @@
 ## ✨ Features
 - ✅ **Create & Manage Habits** – Set daily, weekly, or custom habits with reminders.
 - 🔥 **Track Streaks** – Stay motivated with visual progress tracking.
-- 👥 **Social Habit Sharing** – Invite friends, view their habits, and support each other.
+- 👥 **Social Habit Sharing** – Invite friends, view their habits, support each other, and comment in a community section.
 - 🏆 **Leaderboard** – Compete with friends and top habit builders.
 - 🔔 **Smart Reminders** – Get personalized notifications for habit completion.
 - 💎 **Premium Features** – Unlock advanced insights, unlimited habits, and more.
+- 📨 Send and receive invites for habit tracking
+- 👤 User profile management
 
 ## 🏗️ Architecture – Feature-Based MVVM
 Rise follows a **Feature-First MVVM Architecture** using **Provider** for state management. This ensures scalability, modularity, and clean separation of concerns.
@@ -21,13 +23,12 @@ lib/
 │── main.dart                   # Entry point of the app
 │── app.dart                    # Root widget with route management
 │
-├── config/                     # Configuration & Firebase setup
-│   ├── app_config.dart          # Environment-specific settings
 │
 ├── core/                        # Core utilities & global services
 │   ├── services/                # Services (API, Auth, Notifications)
 │   ├── utils/                   # Global utilities (formatters, extensions)
 │   ├── theme/                   # App-wide themes & styles
+├   ├── config/                   # Configuration
 │
 ├── features/                    # Feature-first structure
 │   ├── auth/                    # Authentication feature
@@ -51,6 +52,9 @@ lib/
 │   ├── leaderboard/             # Leaderboard feature
 │   ├── notifications/           # Habit reminder notifications
 │   ├── subscriptions/           # Premium feature handling
+│   ├── invites/                 # Invite friends to habits
+│   ├── profile/                 # User profile management
+│   ├── community/               # Comments and discussions
 │
 └── shared/                      # Shared resources across features
     ├── widgets/                 # Global UI components (buttons, loaders)
@@ -110,6 +114,14 @@ MIT License - See [LICENSE](LICENSE) for details.
 
 ## 📬 Contact & Contribution
 Want to contribute? Open an issue or submit a pull request!
+
+## 🤝 Contributing
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature-name`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature-name`)
+5. Create a pull request
+
 
 - Email: talk2destinyed@gmail.com
 - Watch Complete Youtube Video : [https://www.youtube.com/@Destiny_Ed]
