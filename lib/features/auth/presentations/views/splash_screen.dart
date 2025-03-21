@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rise/core/config/constants.dart';
 import 'package:rise/core/theme/app_colors.dart';
 import 'package:rise/features/auth/presentations/views/onboarding_screen.dart';
 
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: Center(
-        child: Text('Rise', style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white)),
+        child: Text(appName, style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.white)),
       ),
     );
   }

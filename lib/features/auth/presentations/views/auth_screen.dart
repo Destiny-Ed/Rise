@@ -1,29 +1,45 @@
 import 'package:flutter/material.dart';
-import '../providers/auth_provider.dart';
+import 'package:rise/core/config/constants.dart';
+import 'package:rise/core/config/extensions.dart';
+import 'package:rise/core/theme/app_colors.dart';
+import 'package:rise/features/main_activity.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // final authProvider = Provider.of<AuthProvider>(context);
-    final TextEditingController usernameController = TextEditingController();
-
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text("Welcome to Rise", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-          SizedBox(height: 20),
-          Image.asset("assets/auth_image.png", height: 200),
-          SizedBox(height: 30),
-          TextField(controller: usernameController, decoration: InputDecoration(labelText: "Enter Username")),
-          SizedBox(height: 30),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Spacer(),
 
-          ElevatedButton.icon(icon: Icon(Icons.g_mobiledata), label: Text("Sign in with Google"), onPressed: () {}),
-          SizedBox(height: 20),
-          ElevatedButton.icon(icon: Icon(Icons.apple), label: Text("Sign in with Apple"), onPressed: () {}),
-        ],
+            Text("$appName above anything".cap, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            30.height(),
+            Image.asset("assets/onboarding_two.png", height: 200),
+            Spacer(),
+
+            ElevatedButton.icon(
+              style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
+              icon: Icon(Icons.g_mobiledata, color: AppColors.red),
+              label: Text("Rise with Google", style: TextStyle(color: AppColors.white)),
+              onPressed: () {},
+            ),
+            20.height(),
+            ElevatedButton.icon(
+              style: ButtonStyle(backgroundColor: WidgetStateProperty.all(AppColors.primaryColor)),
+
+              icon: Icon(Icons.apple, color: AppColors.black),
+              label: Text(" Rise with Apple ", style: TextStyle(color: AppColors.white)),
+              onPressed: () {
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => MainScreen()));
+              },
+            ),
+            Spacer(),
+          ],
+        ),
       ),
     );
   }

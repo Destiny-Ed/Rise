@@ -1,4 +1,4 @@
-package com.rise.app
+package com.rise.rise
 
 import io.flutter.embedding.android.FlutterActivity
 
