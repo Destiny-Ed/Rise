@@ -12,6 +12,52 @@
 - 🔔 **Smart Reminders** – Get personalized notifications for habit completion.
 - 💎 **Premium Features** – Unlock advanced insights, unlimited habits, and more.
 
+## 🏗️ Architecture – Feature-Based MVVM
+Rise follows a **Feature-First MVVM Architecture** using **Provider** for state management. This ensures scalability, modularity, and clean separation of concerns.
+
+### **📂 Folder Structure**
+```
+lib/
+│── main.dart                   # Entry point of the app
+│── app.dart                    # Root widget with route management
+│
+├── config/                     # Configuration & Firebase setup
+│   ├── app_config.dart          # Environment-specific settings
+│
+├── core/                        # Core utilities & global services
+│   ├── services/                # Services (API, Auth, Notifications)
+│   ├── utils/                   # Global utilities (formatters, extensions)
+│   ├── theme/                   # App-wide themes & styles
+│
+├── features/                    # Feature-first structure
+│   ├── auth/                    # Authentication feature
+│   │   ├── data/                # Data handling (models & repositories)
+│   │   ├── domain/              # Business logic (Use Cases)
+│   │   ├── presentation/        # UI & State Management
+│   │   │   ├── views/           # Screens (LoginView, SignupView)
+│   │   │   ├── providers/       # AuthProvider (using ChangeNotifier)
+│   │   │   ├── widgets/         # Reusable UI components
+│   │   ├── auth_module.dart     # Exports everything for easy access
+│   │
+│   ├── habits/                  # Habit tracking feature
+│   │   ├── data/                # Habit models & repositories
+│   │   ├── domain/              # Business logic (Use Cases)
+│   │   ├── presentation/        # UI & State Management
+│   │   │   ├── views/           # Screens (HabitListView, HabitDetailView)
+│   │   │   ├── providers/       # HabitProvider (handles state)
+│   │   │   ├── widgets/         # Habit-specific UI components
+│   │   ├── habits_module.dart   # Exports everything for easy access
+│   │
+│   ├── leaderboard/             # Leaderboard feature
+│   ├── notifications/           # Habit reminder notifications
+│   ├── subscriptions/           # Premium feature handling
+│
+└── shared/                      # Shared resources across features
+    ├── widgets/                 # Global UI components (buttons, loaders)
+    ├── models/                  # Generic models (User, AppSettings)
+    ├── services/                # Reusable services (Database, API)
+```
+
 ## 🔧 Tech Stack
 - **Frontend**: Flutter (Dart)
 - **Backend**: Firebase Firestore, Firebase Authentication
@@ -65,8 +111,8 @@ MIT License - See [LICENSE](LICENSE) for details.
 ## 📬 Contact & Contribution
 Want to contribute? Open an issue or submit a pull request!
 
-📧 Contact: talk2destinyed@gmail.com
-Watch Complete Youtube Video : [https://www.youtube.com/@Destiny_Ed]
+- Email: talk2destinyed@gmail.com
+- Watch Complete Youtube Video : [https://www.youtube.com/@Destiny_Ed]
 
 
 ## Getting Started
