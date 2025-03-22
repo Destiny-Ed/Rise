@@ -20,3 +20,8 @@ Future<DateTime?> pickDate(BuildContext context, {required DateTime firstDate, r
 
   return date;
 }
+
+Future<TimeOfDay?> pickTime(BuildContext context) async {
+  TimeOfDay? pickedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
+  return pickedTime;
+}

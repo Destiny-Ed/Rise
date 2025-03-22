@@ -4,6 +4,7 @@ import 'package:rise/core/config/constants.dart';
 import 'package:rise/core/config/extensions.dart';
 import 'package:rise/core/theme/app_colors.dart';
 import 'package:rise/features/community/presentation/widgets/comment_tile.dart';
+import 'package:rise/features/home_screen/presentation/widgets/share_invite_friends_modal.dart';
 import 'package:rise/shared/widgets/message.dart';
 
 void showFriendDetailsBottomSheet(
@@ -13,8 +14,9 @@ void showFriendDetailsBottomSheet(
   int streakCount,
   int missedDays,
   int unmissedDays,
-  List<Map<String, dynamic>> comments,
-) {
+  List<Map<String, dynamic>> comments, {
+  bool isCurrentUser = false,
+}) {
   TextEditingController commentController = TextEditingController();
 
   showModalBottomSheet(
@@ -23,7 +25,7 @@ void showFriendDetailsBottomSheet(
     isScrollControlled: true,
     showDragHandle: true,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-    builder: (context) {
+    builder: (ctx) {
       return Padding(
         padding: EdgeInsets.only(left: 16, right: 16, top: 10, bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Column(
@@ -35,7 +37,7 @@ void showFriendDetailsBottomSheet(
             CircleAvatar(
               radius: 40,
               backgroundColor: AppColors.primaryColor,
-              child: CachedNetworkImage(imageUrl:  avatar(friendName)), // Replace with real image
+              child: CachedNetworkImage(imageUrl: avatar(friendName)), // Replace with real image
             ),
             10.height(),
 
@@ -59,10 +61,25 @@ void showFriendDetailsBottomSheet(
             ),
             16.height(),
 
-            // Comments Section
-            Align(
-              alignment: Alignment.centerLeft,
-              child: Text("Comments (${comments.length})", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Row(
+              children: [
+                // Comments Section
+                Text("Comments (${comments.length})", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                Spacer(),
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(ctx);
+                    showShareHiveModal(context);
+                  },
+                  child: Row(
+                    children: [
+                      Text("Invite Friends", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                      5.width(),
+                      Icon(Icons.share),
+                    ],
+                  ),
+                ),
+              ],
             ),
             10.height(),
 

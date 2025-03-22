@@ -5,6 +5,8 @@ import 'package:rise/core/config/constants.dart';
 import 'package:rise/core/config/extensions.dart';
 import 'package:rise/core/theme/app_colors.dart';
 import 'package:rise/core/theme/icons_illustrations.dart';
+import 'package:rise/features/community/presentation/dialogs/show_friends_details_sheet.dart';
+import 'package:rise/features/home_screen/presentation/views/log_habits.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -112,49 +114,64 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     itemCount: 6,
                     itemBuilder: (context, habitIndex) {
-                      return Card(
-                        shape: StadiumBorder(side: BorderSide(color: AppColors.secondaryColor)),
-                        elevation: 4,
-                        child: Padding(
-                          padding: EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(streakIcons(habitIndex * 5), width: 50),
-                                  5.width(),
-                                  Text(
-                                    "${habitIndex * 13}",
-                                    style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                "Habit ${habitIndex + 1}",
-                                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                              ),
+                      return GestureDetector(
+                        onTap: () {
+                          showFriendDetailsBottomSheet(
+                            context,
+                            "Destiny Ed",
+                            "Habit ${habitIndex + 1}",
+                            habitIndex * 13,
+                            20,
+                            3,
+                            [],
+                            isCurrentUser: currentUserIndex == _currentIndex,
+                          );
+                        },
+                        child: Card(
+                          color: habitIndex.isEven ? AppColors.primaryColor.withAlpha(50) : null,
+                          shape: StadiumBorder(side: BorderSide(color: AppColors.secondaryColor)),
+                          elevation: 4,
+                          child: Padding(
+                            padding: EdgeInsets.all(12),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(streakIcons(habitIndex * 13), width: 50),
+                                    5.width(),
+                                    Text(
+                                      "${habitIndex * 13}",
+                                      style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  "Habit ${habitIndex + 1}",
+                                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                ),
 
-                              Text("daily", style: TextStyle(fontSize: 16)),
-                              SizedBox(height: 8),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.comment, size: 18),
-                                  5.width(),
-                                  Text("${habitIndex * 3}"),
-                                  15.width(),
-                                  Checkbox(
-                                    semanticLabel: "mark habit",
-                                    splashRadius: 20,
-                                    shape: CircleBorder(),
-                                    value: true,
-                                    onChanged: (value) {},
-                                  ),
-                                ],
-                              ),
-                            ],
+                                Text("daily", style: TextStyle(fontSize: 16)),
+                                SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.comment, size: 18),
+                                    5.width(),
+                                    Text("${habitIndex * 3}"),
+                                    15.width(),
+                                    Checkbox(
+                                      semanticLabel: "mark habit",
+                                      splashRadius: 20,
+                                      shape: CircleBorder(),
+                                      value: habitIndex.isEven,
+                                      onChanged: (value) {},
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );
@@ -169,8 +186,10 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton:
           _currentIndex == currentUserIndex
               ? FloatingActionButton(
-                onPressed: () {},
-                tooltip: "Create Habit",
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddHabitScreen()));
+                },
+                tooltip: "Log Habit",
                 backgroundColor: AppColors.primaryColor,
                 foregroundColor: AppColors.white,
                 child: Icon(Icons.add),
